@@ -4,8 +4,9 @@ services:
     env: node
     plan: free
     branch: main
-    buildCommand: cd server && npm install
-    startCommand: cd server && npm start
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
     # Do not commit secrets here. Add them in the Render dashboard or use encrypted secrets.
     envVars:
       - key: PORT
