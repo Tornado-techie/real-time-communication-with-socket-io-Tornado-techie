@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.css": "/real-time-communication-with-socket-io-Tornado-techie/static/css/main.838c0dea.css",
+    "main.js": "/real-time-communication-with-socket-io-Tornado-techie/static/js/main.f87ee931.js",
+    "index.html": "/real-time-communication-with-socket-io-Tornado-techie/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.838c0dea.css",
+    "static/js/main.f87ee931.js"
+  ]
+}
