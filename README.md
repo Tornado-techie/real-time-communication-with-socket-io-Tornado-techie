@@ -124,7 +124,7 @@ Open http://localhost:3000 in your browser. The client connects to the server at
 
 **GitHub Pages (Frontend):**
 1. Frontend is deployed to GitHub Pages automatically
-2. URL: https://tornado-techie.github.io/real-time-communication-with-socket-io-Tornado-techie
+2. URL: https://tornado-techie.github.io/real-time-communication-with-socket-io-Tornado-techie/
 
 **Deployment Files:**
 - Root `package.json`: Tells Railway how to build and start the server
