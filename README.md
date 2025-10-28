@@ -19,10 +19,7 @@ This app was created as a learning project and includes several advanced chat fe
 real-time-communication-with-socket-io-Tornado-techie/
 ├── .git/                   # Git repository metadata
 ├── .gitignore              # Git ignore rules
-├── package.json            # Root package.json for deployment
-├── railway.json            # Railway deployment configuration
-├── nixpacks.toml           # Nixpacks build configuration
-├── start.sh                # Production startup script
+├── render.yaml             # Render deployment configuration
 ├── client/                 # React front-end application
 │   ├── public/             # Static files
 │   │   └── index.html      # Main HTML template
@@ -52,8 +49,6 @@ real-time-communication-with-socket-io-Tornado-techie/
 │   │   └── auth.js         # Authentication routes
 │   ├── socket/             # Socket.io event handlers
 │   │   └── ChatHandlers.js # Chat-related socket events
-│   ├── .env                # Environment variables (not in git)
-│   ├── .env.example        # Environment variables template
 │   ├── server.js           # Server entry point
 │   └── package.json        # Server dependencies and scripts
 ├── screenshots/            # Application screenshots
@@ -117,32 +112,31 @@ Open http://localhost:3000 in your browser. The client connects to the server at
 
 ### Production Deployment
 
-**Railway (Backend):**
-1. Connect your GitHub repository to Railway
-2. Set the required environment variables in Railway dashboard
-3. Railway will automatically detect the configuration files and deploy
+**Render (Backend):**
+1. Connect your GitHub repository to Render
+2. Create a new Web Service using the `render.yaml` blueprint
+3. Set the required environment variables in Render dashboard:
+   - `MONGODB_URI`: Your MongoDB Atlas connection string
+   - `JWT_SECRET`: A secure random string for JWT signing
+   - `CLIENT_URL`: Your frontend URL (GitHub Pages URL)
+   - `NODE_ENV`: Set to `production`
+4. Render will automatically build and deploy your backend
 
 **GitHub Pages (Frontend):**
 1. Frontend is deployed to GitHub Pages automatically
 2. URL: https://tornado-techie.github.io/real-time-communication-with-socket-io-Tornado-techie/
+3. Update `client/.env` with your Render backend URL before building
 
 **Deployment Files:**
-- Root `package.json`: Tells Railway how to build and start the server
-- `railway.json`: Railway-specific deployment configuration
-- `nixpacks.toml`: Build instructions for Railway's Nixpacks
-- `start.sh`: Production startup script with environment validation
+- `render.yaml`: Render service configuration for backend deployment
 
 ---
 
 ## Deployment Configuration
 
-This project includes several configuration files for production deployment:
+This project includes configuration for production deployment on Render:
 
-- **`package.json`** (root): Main package configuration for Railway deployment
-- **`railway.json`**: Railway-specific deployment settings
-- **`nixpacks.toml`**: Build configuration for Railway's Nixpacks builder
-- **`start.sh`**: Production startup script with environment validation
-- **`.env.example`**: Template for environment variables
+- **`render.yaml`**: Render service blueprint for backend deployment
 
 ---
 
@@ -157,7 +151,7 @@ CLIENT_URL=http://localhost:3000
 NODE_ENV=development
 ```
 
-### Production (Railway Environment Variables):
+### Production (Render Environment Variables):
 ```
 PORT=5000
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/chat-app
@@ -199,7 +193,7 @@ NODE_ENV=production
 
 ## Deployed URLs
 
-- **Backend Server (Railway):** `https://your-railway-app-url.railway.app`
+- **Backend Server (Render):** `https://your-render-service.onrender.com`
 - **Frontend Client (GitHub Pages):** `https://tornado-techie.github.io/real-time-communication-with-socket-io-Tornado-techie`
 
 The application is configured for production deployment with MongoDB Atlas as the database.
@@ -221,18 +215,19 @@ The application is configured for production deployment with MongoDB Atlas as th
 - Verify server CORS settings allow the client origin
 - Check CLIENT_URL environment variable matches your frontend URL
 
-**Railway deployment failures:**
-- Ensure all environment variables are set in Railway dashboard
-- Check Railway build logs for specific error messages
+**Render deployment failures:**
+- Ensure all environment variables are set in Render dashboard
+- Check Render build logs for specific error messages
 - Verify MongoDB connection string is correct
+- Render may take a few minutes for the initial deploy
 
 **MongoDB connection issues:**
 - For local development: Ensure MongoDB is running on localhost:27017
 - For production: Verify MongoDB Atlas connection string and network access
 
 **Environment variable issues:**
-- Check `.env` file exists in server directory for local development
-- For production: Set variables in Railway dashboard, not in .env file
+- Create a `.env` file in the `server/` directory for local development
+- For production: Set variables in Render dashboard, not in .env file
 - Ensure JWT_SECRET is a secure, long random string
 
 ---
@@ -243,7 +238,7 @@ The application is configured for production deployment with MongoDB Atlas as th
 - Frontend: React with Socket.io client
 - Backend: Node.js, Express, Socket.io server
 - Database: MongoDB (local development) / MongoDB Atlas (production)
-- Deployment: GitHub Pages (frontend) + Railway (backend)
+- Deployment: GitHub Pages (frontend) + Render (backend)
 
 **Potential Improvements:**
 - Add unit/integration tests for socket handlers and React components
@@ -256,11 +251,11 @@ The application is configured for production deployment with MongoDB Atlas as th
 ---
 
 **Repository Notes:**
-- This repository is a fork from the classroom repo for Railway deployment
+- This repository is a fork from the classroom repo
 - Original classroom repo: `PLP-MERN-Stack-Development/real-time-communication-with-socket-io-Tornado-techie`
 - Personal fork: `Tornado-techie/real-time-communication-with-socket-io-Tornado-techie`
 - Frontend deployed from personal fork to GitHub Pages
-- Backend deployed from personal fork to Railway
+- Backend deployed from personal fork to Render
 
 ---
 

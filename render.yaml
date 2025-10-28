@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: chat-backend
+    env: node
+    plan: free
+    branch: main
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    # Do not commit secrets here. Add them in the Render dashboard or use encrypted secrets.
+    envVars:
+      - key: PORT
+        sync: false
+
+# Notes:
+# - This file defines a simple Render service for the backend located in the `server/` folder.
+# - Render will provide a URL of the form `https://<service-name>.onrender.com` once deployed.
+# - Update `name` and `plan` as desired. Set environment variables (MONGODB_URI, JWT_SECRET, CLIENT_URL)
+#   in the Render dashboard for the service after creating it.
